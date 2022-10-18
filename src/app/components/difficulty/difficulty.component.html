@@ -1,0 +1,12 @@
+<h1>Difficulty & Category</h1>
+<form>
+  <label for="diff">Difficulty:</label>
+  <select name="diff" id="diff">
+    <option value="">Select a difficulty</option>
+    <option *ngFor="let d of difficulties">{{ d }}</option>
+  </select>
+  <label for="cat">Category:</label>
+  <select name="cat" id="cat" multiple>
+    <option *ngFor="let c of categories">{{ c }}</option>
+  </select>
+</form>

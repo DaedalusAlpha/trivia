@@ -1,1 +1,5 @@
-<app-trivia-question></app-trivia-question>
+<app-trivia-question
+  *ngFor="let q of questions; let i = index"
+  [ind]="i"
+  [question]="q"
+></app-trivia-question>

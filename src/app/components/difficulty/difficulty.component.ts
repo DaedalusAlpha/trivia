@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesApiService } from 'src/app/services/categories-api.service';
 import { DifficultiesService } from 'src/app/services/difficulties.service';
+import { CategoriesService } from 'src/app/services/categories.service';
+import { QuestionsApiService } from 'src/app/services/questions-api.service';
+import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 
 @Component({
   selector: 'app-difficulty',
@@ -14,14 +16,23 @@ export class DifficultyComponent implements OnInit {
   chosenDifficulty: string = '';
 
   constructor(
-    private categoriesApiService: CategoriesApiService,
-    private difficultiesService: DifficultiesService
+    private questionsApiService: QuestionsApiService,
+    private difficultiesService: DifficultiesService,
+    private categoriesService: CategoriesService
   ) {}
 
   ngOnInit(): void {
-    this.categoriesApiService.fetchCategories().subscribe((category) => {
-      this.categories = Object.keys(category);
-    });
+    this.categories = this.categoriesService.getCategories();
     this.difficulties = this.difficultiesService.getDifficulties();
+  }
+
+  startTrivia(): void {
+    this.questionsApiService.setCategories(
+      this.chosenCategories.map((element) => {
+        return element.replace(/ /gi, '_').replace(/&/gi, 'and').toLowerCase();
+      })
+    );
+    this.questionsApiService.setDifficulty(this.chosenDifficulty.toLowerCase());
+    this.questionsApiService.fetchQuestions();
   }
 }

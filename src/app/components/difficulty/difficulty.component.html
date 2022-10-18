@@ -1,5 +1,5 @@
 <h1>Difficulty & Category</h1>
-<form>
+<form (ngSubmit)="startTrivia()">
   <label for="diff">Difficulty:</label>
   <select name="diff" id="diff" [(ngModel)]="chosenDifficulty">
     <option value="">Select a difficulty</option>
@@ -9,4 +9,5 @@
   <select name="cat" id="cat" multiple [(ngModel)]="chosenCategories">
     <option *ngFor="let c of categories">{{ c }}</option>
   </select>
+  <button>Play Trivia</button>
 </form>

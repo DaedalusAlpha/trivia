@@ -5,7 +5,8 @@ import { Difficulty } from '../models/question';
   providedIn: 'root',
 })
 export class DifficultiesService {
-  difficulties: string[] = Object.keys(Difficulty);
+  difficulties: string[] = ['Easy', 'Medium', 'Hard'];
+
   constructor() {}
 
   getDifficulties(): string[] {

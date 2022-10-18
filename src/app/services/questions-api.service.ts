@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Difficulty, Question } from '../models/question';
+import { Question } from '../models/question';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +13,8 @@ export class QuestionsApiService {
   triviaDifficulty: string = 'easy';
 
   constructor(private httpClient: HttpClient) {}
-  fetchQuestions(): Observable<Question> {
-    return this.httpClient.get<Question>(this.createApiURL());
+  fetchQuestions(): Observable<Question[]> {
+    return this.httpClient.get<Question[]>(this.createApiURL());
   }
 
   createApiURL(): string {
@@ -24,5 +24,14 @@ export class QuestionsApiService {
 
   setCategories(cats: string[]): void {
     this.triviaCategories = cats.toString();
+  }
+
+  setDifficulty(diff: string): void {
+    this.triviaDifficulty = diff;
+  }
+
+  //Placeholder as the limit will be hard-coded to 5.
+  setLimit(limit: number): void {
+    this.triviaLimit = limit;
   }
 }

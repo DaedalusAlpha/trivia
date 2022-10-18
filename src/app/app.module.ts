@@ -7,6 +7,7 @@ import { DifficultyComponent } from './components/difficulty/difficulty.componen
 import { TriviaQuestionComponent } from './components/trivia-question/trivia-question.component';
 import { ScoresComponent } from './components/scores/scores.component';
 import { TriviaGameComponent } from './components/trivia-game/trivia-game.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { TriviaGameComponent } from './components/trivia-game/trivia-game.compon
     ScoresComponent,
     TriviaGameComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

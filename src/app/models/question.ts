@@ -1,4 +1,5 @@
 export interface Question {
+  [x: string]: any;
   category: string;
   id: string;
   correctAnswer: string;

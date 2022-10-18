@@ -10,6 +10,8 @@ import { DifficultiesService } from 'src/app/services/difficulties.service';
 export class DifficultyComponent implements OnInit {
   categories: string[] = [];
   difficulties: string[] = [];
+  chosenCategories: string[] = [];
+  chosenDifficulty: string = '';
 
   constructor(
     private categoriesApiService: CategoriesApiService,

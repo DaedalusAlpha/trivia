@@ -10,7 +10,7 @@ import { ScoreService } from 'src/app/services/score.service';
 })
 export class TriviaGameComponent implements OnInit {
   questions: Question[] = [];
-  score: number = 0;
+  gameScore: number = 0;
   index: number = 0;
   gameActive: boolean = false;
   gameComplete: boolean = false;
@@ -30,7 +30,7 @@ export class TriviaGameComponent implements OnInit {
         });
       }
     });
-    this.score = this.scoreService.getScore();
+    this.gameScore = this.scoreService.getScore();
   }
 
   updateGame(s: number): void {

@@ -25,7 +25,7 @@ export class QuestionsApiService {
   constructor(private httpClient: HttpClient) {}
 
   fetchQuestions(): Observable<Question[]> {
-    console.log(this.createApiURL());
+    // console.log(this.createApiURL());
     return this.httpClient.get<Question[]>(this.createApiURL());
   }
 

@@ -20,9 +20,9 @@ export class TriviaQuestionComponent implements OnInit {
     let tempAnswers: string[] = [];
     tempAnswers.push(this.question.correctAnswer);
     tempAnswers = tempAnswers.concat(this.question.incorrectAnswers);
-    console.log(tempAnswers);
+    // console.log(tempAnswers);
     this.answers = arrayShuffle(tempAnswers);
-    console.log(this.answers);
+    // console.log(this.answers);
   }
 
   submitAnswer(a: string): void {

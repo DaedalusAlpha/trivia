@@ -1,6 +1,5 @@
-<p>Question Text</p>
-<p>Category</p>
-<button>Answer 1</button>
-<button>Answer 2</button>
-<button>Answer 3</button>
-<button>Answer 4</button>
+<form>
+  <p>{{ question.question }}</p>
+  <p>{{ question.category }}</p>
+  <button *ngFor="let a of answers" (click)="submitAnswer(a)">{{ a }}</button>
+</form>

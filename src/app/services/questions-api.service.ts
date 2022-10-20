@@ -12,13 +12,20 @@ export class QuestionsApiService {
   private _triviaCategories: BehaviorSubject<string> =
     new BehaviorSubject<string>('history');
   readonly triviaCategories = this._triviaCategories.asObservable();
+
   private _triviaDifficulty: BehaviorSubject<string> =
     new BehaviorSubject<string>('medium');
   readonly triviaDifficulty = this._triviaDifficulty.asObservable();
 
+  private _gameActive: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
+  readonly gameActive = this._gameActive.asObservable();
+
   constructor(private httpClient: HttpClient) {}
 
   fetchQuestions(): Observable<Question[]> {
+    console.log(this.createApiURL());
     return this.httpClient.get<Question[]>(this.createApiURL());
   }
 
@@ -32,17 +39,21 @@ export class QuestionsApiService {
   }
 
   setCategories(cats: string[]): void {
-    console.log(cats);
+    // console.log(cats);
     this._triviaCategories.next(cats.toString());
   }
 
   setDifficulty(diff: string): void {
-    console.log(diff);
+    // console.log(diff);
     this._triviaDifficulty.next(diff);
   }
 
   //Placeholder as the limit will be hard-coded to 5.
   setLimit(limit: number): void {
     this.triviaLimit = limit;
+  }
+
+  setGameState(g: boolean): void {
+    this._gameActive.next(g);
   }
 }

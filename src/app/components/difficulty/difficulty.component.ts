@@ -14,6 +14,7 @@ export class DifficultyComponent implements OnInit {
   difficulties: string[] = [];
   chosenCategories: string[] = [];
   chosenDifficulty: string = '';
+  gameStarted = false;
 
   constructor(
     private questionsApiService: QuestionsApiService,
@@ -27,6 +28,7 @@ export class DifficultyComponent implements OnInit {
   }
 
   startTrivia(): void {
+    this.gameStarted = true;
     this.questionsApiService.setCategories(
       this.chosenCategories.map((element) => {
         return element.replace(/ /gi, '_').replace(/&/gi, 'and').toLowerCase();
@@ -34,5 +36,6 @@ export class DifficultyComponent implements OnInit {
     );
     this.questionsApiService.setDifficulty(this.chosenDifficulty.toLowerCase());
     this.questionsApiService.fetchQuestions();
+    this.questionsApiService.setGameState(true);
   }
 }

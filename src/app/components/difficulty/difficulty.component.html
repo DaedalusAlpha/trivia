@@ -1,13 +1,15 @@
-<h1>Difficulty & Category</h1>
-<form (ngSubmit)="startTrivia()">
-  <label for="diff">Difficulty:</label>
-  <select name="diff" id="diff" [(ngModel)]="chosenDifficulty">
-    <option value="">Select a difficulty</option>
-    <option *ngFor="let d of difficulties">{{ d }}</option>
-  </select>
-  <label for="cat">Category:</label>
-  <select name="cat" id="cat" multiple [(ngModel)]="chosenCategories">
-    <option *ngFor="let c of categories">{{ c }}</option>
-  </select>
-  <button>Play Trivia</button>
-</form>
+<div *ngIf="!gameStarted">
+  <h1>Difficulty & Category</h1>
+  <form>
+    <label for="diff">Difficulty:</label>
+    <select name="diff" id="diff" [(ngModel)]="chosenDifficulty">
+      <option value="">Select a difficulty</option>
+      <option *ngFor="let d of difficulties">{{ d }}</option>
+    </select>
+    <label for="cat">Category:</label>
+    <select name="cat" id="cat" multiple [(ngModel)]="chosenCategories">
+      <option *ngFor="let c of categories">{{ c }}</option>
+    </select>
+    <button (click)="startTrivia()">Play Trivia</button>
+  </form>
+</div>

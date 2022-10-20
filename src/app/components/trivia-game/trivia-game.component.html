@@ -1,5 +1,11 @@
-<app-trivia-question
-  *ngFor="let q of questions; let i = index"
-  [ind]="i"
-  [question]="q"
-></app-trivia-question>
+<div *ngFor="let q of questions; let i = index">
+  <app-trivia-question
+    *ngIf="i == index"
+    [ind]="i"
+    [question]="q"
+    (score)="updateGame($event)"
+  ></app-trivia-question>
+</div>
+<div>
+  <app-enter-score *ngIf="gameComplete"></app-enter-score>
+</div>

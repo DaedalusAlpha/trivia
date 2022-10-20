@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HighScore } from 'src/app/models/high-score';
+import { HighScoresService } from 'src/app/services/high-scores.service';
 
 @Component({
   selector: 'app-scores',
@@ -6,13 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./scores.component.css'],
 })
 export class ScoresComponent implements OnInit {
-  //TODO: SHows a list of all players ranked
-  //from highest to lowest score.
+  scoresList: HighScore[] = [];
 
   //Each high score has a delete button which will
   //remove it from the database and the high scores list.
 
-  constructor() {}
+  constructor(private highScoresService: HighScoresService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getScores();
+  }
+
+  removeScore(h: HighScore): void {
+    this.highScoresService.deleteHighScore(h).subscribe((response) => {
+      // console.log(response);
+      this.getScores();
+    });
+  }
+
+  getScores(): void {
+    this.highScoresService.getHighScores().subscribe((response) => {
+      this.scoresList = response.sort((a, b) => b.score - a.score);
+    });
+  }
 }

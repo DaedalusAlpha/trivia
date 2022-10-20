@@ -17,15 +17,17 @@ export class QuestionsApiService {
     new BehaviorSubject<string>('medium');
   readonly triviaDifficulty = this._triviaDifficulty.asObservable();
 
-  private _gameActive: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+  private _gameStarted: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
-  readonly gameActive = this._gameActive.asObservable();
+  readonly gameActive = this._gameStarted.asObservable();
+  private _gameComplete: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
+  readonly gameComplete = this._gameStarted.asObservable();
 
   constructor(private httpClient: HttpClient) {}
 
   fetchQuestions(): Observable<Question[]> {
-    // console.log(this.createApiURL());
     return this.httpClient.get<Question[]>(this.createApiURL());
   }
 
@@ -39,12 +41,10 @@ export class QuestionsApiService {
   }
 
   setCategories(cats: string[]): void {
-    // console.log(cats);
     this._triviaCategories.next(cats.toString());
   }
 
   setDifficulty(diff: string): void {
-    // console.log(diff);
     this._triviaDifficulty.next(diff);
   }
 
@@ -53,7 +53,13 @@ export class QuestionsApiService {
     this.triviaLimit = limit;
   }
 
-  setGameState(g: boolean): void {
-    this._gameActive.next(g);
+  setGameStarted(g: boolean): void {
+    this._gameStarted.next(g);
+    console.log(g);
+  }
+
+  setGameComplete(g: boolean): void {
+    this._gameComplete.next(g);
+    console.log(g);
   }
 }

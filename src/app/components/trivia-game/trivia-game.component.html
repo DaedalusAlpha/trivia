@@ -1,3 +1,4 @@
+<app-difficulty *ngIf="!gameStarted"></app-difficulty>
 <div *ngFor="let q of questions; let i = index">
   <app-trivia-question
     *ngIf="i == index"
@@ -6,6 +7,4 @@
     (score)="updateGame($event)"
   ></app-trivia-question>
 </div>
-<div>
-  <app-enter-score *ngIf="gameComplete"></app-enter-score>
-</div>
+<app-enter-score *ngIf="gameComplete"></app-enter-score>

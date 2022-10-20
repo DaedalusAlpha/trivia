@@ -1,4 +1,14 @@
-<h2>High Scores</h2>
-<table>
-    
-</table>
+<div>
+  <h2>High Scores</h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Score</th>
+    </tr>
+    <tr *ngFor="let s of scoresList">
+      <td>{{ s.name }}</td>
+      <td>{{ s.score }}</td>
+      <td><button (click)="removeScore(s)">Remove</button></td>
+    </tr>
+  </table>
+</div>

@@ -12,7 +12,7 @@ export class TriviaGameComponent implements OnInit {
   questions: Question[] = [];
   gameScore: number = 0;
   index: number = 0;
-  gameActive: boolean = false;
+  gameStarted: boolean = false;
   gameComplete: boolean = false;
 
   constructor(
@@ -21,12 +21,11 @@ export class TriviaGameComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.questionsApiService.gameActive.subscribe((game_state) => {
-      this.gameActive = game_state;
-      if (this.gameActive) {
+    this.questionsApiService.gameActive.subscribe((game_started) => {
+      this.gameStarted = game_started;
+      if (this.gameStarted) {
         this.questionsApiService.fetchQuestions().subscribe((response) => {
           this.questions = response;
-          // console.log(this.questions);
         });
       }
     });
@@ -37,7 +36,6 @@ export class TriviaGameComponent implements OnInit {
     this.scoreService.updateScore(s);
     this.index++;
     if (this.index > 4) {
-      //send to behavior
       this.gameComplete = true;
     }
   }

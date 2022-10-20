@@ -36,6 +36,6 @@ export class DifficultyComponent implements OnInit {
     );
     this.questionsApiService.setDifficulty(this.chosenDifficulty.toLowerCase());
     this.questionsApiService.fetchQuestions();
-    this.questionsApiService.setGameState(true);
+    this.questionsApiService.setGameStarted(true);
   }
 }

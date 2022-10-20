@@ -16,6 +16,7 @@ export class HighScoresService {
   getHighScores(): Observable<HighScore[]> {
     return this.httpClient.get<HighScore[]>(this.url, {
       headers: {
+        'cache-control': 'no-cache',
         'x-apikey': this.key,
       },
     });
@@ -29,9 +30,21 @@ export class HighScoresService {
       { name: _n, score: _s },
       {
         headers: {
+          'cache-control': 'no-cache',
           'x-apikey': this.key,
+          'content-type': 'application/json',
         },
       }
     );
+  }
+
+  deleteHighScore(h: HighScore): Observable<HighScore> {
+    return this.httpClient.delete<HighScore>(`${this.url}/${h._id}`, {
+      headers: {
+        'cache-control': 'no-cache',
+        'x-apikey': this.key,
+        'content-type': 'application/json',
+      },
+    });
   }
 }

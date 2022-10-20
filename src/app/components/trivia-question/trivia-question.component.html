@@ -1,5 +1,14 @@
-<form>
-  <p>{{ question.question }}</p>
-  <p>{{ question.category }}</p>
-  <button *ngFor="let a of answers" (click)="submitAnswer(a)">{{ a }}</button>
-</form>
+<div class="question">
+  <form>
+    <p style="font-size: smaller">{{ question.category }}</p>
+    <h2>{{ question.question }}</h2>
+    <button
+      class="answerOption"
+      style="display: block"
+      *ngFor="let a of answers"
+      (click)="submitAnswer(a)"
+    >
+      {{ a }}
+    </button>
+  </form>
+</div>

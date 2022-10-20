@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { EnterScoreComponent } from './components/enter-score/enter-score.component';
 
 const appRoutes: Routes = [
-  { path: 'trivia', component: DifficultyComponent },
+  { path: 'trivia', component: TriviaGameComponent },
   { path: 'scores', component: ScoresComponent },
   { path: '', redirectTo: '/trivia', pathMatch: 'full' },
   { path: '**', component: TriviaGameComponent },

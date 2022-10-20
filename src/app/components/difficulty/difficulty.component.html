@@ -1,23 +1,39 @@
-<h1>Difficulty & Category</h1>
-<form>
-  <div>
-    <label for="diff">Difficulty:</label>
-    <select name="diff" id="diff" [(ngModel)]="chosenDifficulty">
-      <option value="">Select a difficulty</option>
-      <option *ngFor="let d of difficulties">{{ d }}</option>
-    </select>
-  </div>
-  <div>
-    <label for="cat">Category:</label>
-    <select
-      [size]="categories.length"
-      name="cat"
-      id="cat"
-      multiple
-      [(ngModel)]="chosenCategories"
-    >
-      <option *ngFor="let c of categories">{{ c }}</option>
-    </select>
-  </div>
-  <div><button (click)="startTrivia()">Play Trivia</button></div>
-</form>
+<div class="container">
+  <form>
+    <h1>Difficulty & Category</h1>
+    <div class="container">
+      <div class="mb-2">
+        <label for="diff" class="form-label">Difficulty:</label>
+        <select
+          name="diff"
+          id="diff"
+          [(ngModel)]="chosenDifficulty"
+          class="form-control"
+        >
+          <option value="">Select a difficulty</option>
+          <option *ngFor="let d of difficulties">{{ d }}</option>
+        </select>
+      </div>
+      <div class="mb-2">
+        <label for="cat" class="form-label">Category:</label>
+        <select
+          class="form-select"
+          [size]="categories.length"
+          name="cat"
+          id="cat"
+          multiple
+          [(ngModel)]="chosenCategories"
+        >
+          <option *ngFor="let c of categories">{{ c }}</option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="justify-items-center">
+          <button class="btn btn-primary" (click)="startTrivia()">
+            Play Trivia
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

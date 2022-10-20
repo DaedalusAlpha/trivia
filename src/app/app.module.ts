@@ -10,6 +10,7 @@ import { ScoresComponent } from './components/scores/scores.component';
 import { TriviaGameComponent } from './components/trivia-game/trivia-game.component';
 import { FormsModule } from '@angular/forms';
 import { EnterScoreComponent } from './components/enter-score/enter-score.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
   { path: 'trivia', component: TriviaGameComponent },
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -14,6 +14,7 @@ export class TriviaGameComponent implements OnInit {
   index: number = 0;
   gameStarted: boolean = false;
   gameComplete: boolean = false;
+  answerCorrect: boolean = false;
 
   constructor(
     private questionsApiService: QuestionsApiService,

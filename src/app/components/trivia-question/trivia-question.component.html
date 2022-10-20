@@ -3,7 +3,7 @@
     <p style="font-size: smaller">{{ question.category }}</p>
     <h2>{{ question.question }}</h2>
     <button
-      class="answerOption"
+      class="mb-3 btn btn-outline-primary"
       style="display: block"
       *ngFor="let a of answers"
       (click)="submitAnswer(a)"

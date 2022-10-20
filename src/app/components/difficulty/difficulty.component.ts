@@ -13,7 +13,7 @@ export class DifficultyComponent implements OnInit {
   categories: string[] = [];
   difficulties: string[] = [];
   chosenCategories: string[] = [];
-  chosenDifficulty: string = '';
+  chosenDifficulty: string = 'Easy';
   gameStarted = false;
 
   constructor(

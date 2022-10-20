@@ -1,38 +1,45 @@
-<div class="container">
+<div class="container col-9 m-2">
   <form>
-    <h1>Difficulty & Category</h1>
-    <div class="container">
-      <div class="mb-2">
-        <label for="diff" class="form-label">Difficulty:</label>
-        <select
-          name="diff"
-          id="diff"
-          [(ngModel)]="chosenDifficulty"
-          class="form-control"
-        >
-          <option value="">Select a difficulty</option>
-          <option *ngFor="let d of difficulties">{{ d }}</option>
-        </select>
-      </div>
-      <div class="mb-2">
-        <label for="cat" class="form-label">Category:</label>
-        <select
-          class="form-select"
-          [size]="categories.length"
-          name="cat"
-          id="cat"
-          multiple
-          [(ngModel)]="chosenCategories"
-        >
-          <option *ngFor="let c of categories">{{ c }}</option>
-        </select>
-      </div>
-      <div class="row">
-        <div class="justify-items-center">
-          <button class="btn btn-primary" (click)="startTrivia()">
-            Play Trivia
-          </button>
+    <div class="mb-3">
+      <p>Choose a diffiiculty:</p>
+      <div class="form-check">
+        <div *ngFor="let d of difficulties">
+          <label class="form-check-label" for="difficulty_{{ d }}">
+            {{ d }}
+          </label>
+          <input
+            class="form-check-input"
+            type="radio"
+            id="difficulty_{{ d }}"
+            name="difficulty"
+            [value]="d"
+            [(ngModel)]="chosenDifficulty"
+          />
         </div>
+      </div>
+    </div>
+
+
+
+<!-- TO BE REPLACED -->
+    <!-- <div class="mb-3">
+      <label for="cat" class="form-label">Select one or more categories:</label>
+      <select
+        class="form-select"
+        [size]="categories.length"
+        name="cat"
+        id="cat"
+        multiple
+        [(ngModel)]="chosenCategories"
+      >
+        <option *ngFor="let c of categories">{{ c }}</option>
+      </select>
+    </div> -->
+    <div class="row">
+      <div class="justify-items-center">
+        <button class="btn btn-primary" (click)="startTrivia()">
+          Play Trivia
+        </button>
       </div>
     </div>
   </form>

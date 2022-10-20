@@ -20,7 +20,7 @@ export class QuestionsApiService {
   private _gameStarted: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
-  readonly gameActive = this._gameStarted.asObservable();
+  readonly gameStarted = this._gameStarted.asObservable();
   private _gameComplete: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
   readonly gameComplete = this._gameStarted.asObservable();

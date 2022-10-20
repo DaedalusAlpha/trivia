@@ -22,7 +22,7 @@ export class TriviaGameComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.questionsApiService.gameActive.subscribe((game_started) => {
+    this.questionsApiService.gameStarted.subscribe((game_started) => {
       this.gameStarted = game_started;
       if (this.gameStarted) {
         this.questionsApiService.fetchQuestions().subscribe((response) => {

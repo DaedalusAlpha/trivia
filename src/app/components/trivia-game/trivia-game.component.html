@@ -1,17 +1,16 @@
-<div class="container" style="max-width: 500px">
+<div class="container mainView">
   <app-difficulty *ngIf="!gameStarted"></app-difficulty>
-  <div class="container text-left">
+  <div class="container text-left" *ngIf="gameStarted">
     <div class="row align-items-start">
       <div *ngFor="let q of questions; let i = index">
         <app-trivia-question
           *ngIf="i == index"
           [ind]="i"
           [question]="q"
-          [answerCorrect]="false"
           (score)="updateGame($event)"
         ></app-trivia-question>
       </div>
-      <div *ngIf="true">test</div>
+      <!-- <div *ngIf="true">test</div> Placeholder for correct answers-->
     </div>
   </div>
   <app-enter-score *ngIf="gameComplete"></app-enter-score>

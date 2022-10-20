@@ -1,14 +1,22 @@
-<div>
+<div class="container">
   <h2>High Scores</h2>
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Score</th>
-    </tr>
-    <tr *ngFor="let s of scoresList">
-      <td>{{ s.name }}</td>
-      <td>{{ s.score }}</td>
-      <td><button (click)="removeScore(s)">Remove</button></td>
-    </tr>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of scoresList; index as i">
+        <td>{{ s.name }}</td>
+        <td>{{ s.score | number }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="removeScore(s)">
+            <i class="bi bi-x-square-fill"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>

@@ -40,6 +40,7 @@ export class TriviaQuestionComponent implements OnInit {
     if (this.isCorrect(a)) {
       newScore = 1;
     }
+    this.answered = false;
     this.score.emit(newScore);
   }
 }

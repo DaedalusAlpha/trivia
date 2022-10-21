@@ -3,7 +3,13 @@
     <p style="font-size: smaller">{{ question.category }}</p>
     <h2>{{ question.question }}</h2>
     <button
-      class="mb-3 btn btn-outline-primary"
+      [disabled]="answered"
+      [ngClass]="{
+        'btn-outline-primary': !answered,
+        'btn-success': answered && isCorrect(a),
+        'btn-danger': answered && !isCorrect(a)
+      }"
+      class="mb-3 btn"
       style="display: block"
       *ngFor="let a of answers"
       (click)="submitAnswer(a)"

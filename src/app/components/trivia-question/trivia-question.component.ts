@@ -11,7 +11,7 @@ export class TriviaQuestionComponent implements OnInit {
   @Input() question: Question = {} as Question;
   @Input() ind: number = 1;
   @Output() score = new EventEmitter<number>();
-
+  answered: boolean = false;
   answers: string[] = [];
 
   constructor() {}
@@ -25,9 +25,19 @@ export class TriviaQuestionComponent implements OnInit {
     // console.log(this.answers);
   }
 
-  submitAnswer(a: string): void {
+  delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  isCorrect(a: string): boolean {
+    return a == this.question.correctAnswer;
+  }
+
+  async submitAnswer(a: string) {
+    this.answered = true;
+    await this.delay(1500);
     let newScore: number = 0;
-    if (a == this.question.correctAnswer) {
+    if (this.isCorrect(a)) {
       newScore = 1;
     }
     this.score.emit(newScore);

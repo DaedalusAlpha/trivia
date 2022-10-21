@@ -36,7 +36,7 @@ export class TriviaGameComponent implements OnInit {
   updateGame(s: number): void {
     this.scoreService.updateScore(s);
     this.index++;
-    if (this.index > 4) {
+    if (this.index > this.questionsApiService.triviaLimit - 1) {
       this.gameComplete = true;
     }
   }

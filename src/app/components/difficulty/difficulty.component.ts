@@ -12,7 +12,7 @@ import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 export class DifficultyComponent implements OnInit {
   categories: string[] = [];
   difficulties: string[] = [];
-  chosenCategories: string[] = [];
+  selectedCategories: { cat: string; chosen: boolean }[] = [];
   chosenDifficulty: string = 'Easy';
   gameStarted = false;
 
@@ -25,13 +25,23 @@ export class DifficultyComponent implements OnInit {
   ngOnInit(): void {
     this.categories = this.categoriesService.getCategories();
     this.difficulties = this.difficultiesService.getDifficulties();
+    this.populateSelectedCategories();
+  }
+
+  populateSelectedCategories(): void {
+    this.categories.forEach((c) => {
+      this.selectedCategories.push({ cat: c, chosen: false });
+    });
   }
 
   startTrivia(): void {
     this.gameStarted = true;
     this.questionsApiService.setCategories(
-      this.chosenCategories.map((element) => {
-        return element.replace(/ /gi, '_').replace(/&/gi, 'and').toLowerCase();
+      this.selectedCategories.map((element) => {
+        return element.cat
+          .replace(/ /gi, '_')
+          .replace(/&/gi, 'and')
+          .toLowerCase();
       })
     );
     this.questionsApiService.setDifficulty(this.chosenDifficulty.toLowerCase());

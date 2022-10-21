@@ -1,7 +1,7 @@
-<div class="container col-9 m-2">
-  <form>
+<div class="col-9 m-2">
+  <form #form="ngForm">
     <div class="mb-3">
-      <p>Choose a diffiiculty:</p>
+      <p>Choose difficulty:</p>
       <div class="form-check">
         <div *ngFor="let d of difficulties">
           <label class="form-check-label" for="difficulty_{{ d }}">
@@ -18,26 +18,30 @@
         </div>
       </div>
     </div>
-
-
-
-<!-- TO BE REPLACED -->
-    <!-- <div class="mb-3">
-      <label for="cat" class="form-label">Select one or more categories:</label>
-      <select
-        class="form-select"
-        [size]="categories.length"
-        name="cat"
-        id="cat"
-        multiple
-        [(ngModel)]="chosenCategories"
+    <p>Choose categories:</p>
+    <div class="mb-3">
+      <div
+        class="form-check form-switch"
+        *ngFor="let c of categories; let index = index"
       >
-        <option *ngFor="let c of categories">{{ c }}</option>
-      </select>
-    </div> -->
+        <input
+          required
+          class="form-check-input"
+          type="checkbox"
+          id="category_{{ c }}"
+          [(ngModel)]="selectedCategories[index].chosen"
+          name="categories"
+        />
+        <label class="form-check-label" for="category_{{ c }}">{{ c }}</label>
+      </div>
+    </div>
     <div class="row">
       <div class="justify-items-center">
-        <button class="btn btn-primary" (click)="startTrivia()">
+        <button
+          class="btn btn-primary"
+          (click)="startTrivia()"
+          [disabled]="form.invalid"
+        >
           Play Trivia
         </button>
       </div>

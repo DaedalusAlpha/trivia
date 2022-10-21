@@ -34,16 +34,25 @@ export class DifficultyComponent implements OnInit {
     });
   }
 
+  checkIfAnyCategoryTrue(): boolean {
+    return this.selectedCategories.some((element) => element.chosen);
+  }
+
+  setAllCategories(status: boolean): void {
+    this.selectedCategories.map((element) => (element.chosen = status));
+  }
+
   startTrivia(): void {
+    let tempCategories: string[] = [];
     this.gameStarted = true;
-    this.questionsApiService.setCategories(
-      this.selectedCategories.map((element) => {
-        return element.cat
-          .replace(/ /gi, '_')
-          .replace(/&/gi, 'and')
-          .toLowerCase();
-      })
-    );
+    this.selectedCategories.forEach((element) => {
+      if (element.chosen) {
+        tempCategories.push(
+          element.cat.replace(/&/gi, 'and').replace(/ /gi, '_').toLowerCase()
+        );
+      }
+    });
+    this.questionsApiService.setCategories(tempCategories);
     this.questionsApiService.setDifficulty(this.chosenDifficulty.toLowerCase());
     this.questionsApiService.fetchQuestions();
     this.questionsApiService.setGameStarted(true);
